@@ -12,9 +12,12 @@ const Mask = function() {
         start(){
             if(document.querySelector('[data-mask]') != null){
                 document.querySelectorAll('[data-mask]').forEach(function(input,i){
-                    Mask.format('[data-mask="'+input.dataset.mask+'"]');
+                    Mask.add(input);
                 });
             }
+        },
+        add(input){
+            Mask.format(input);
         },
         format(element) {            
             var el = document.querySelector(element);
