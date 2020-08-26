@@ -19,8 +19,7 @@ const Mask = function() {
         add(input){
             Mask.format(input);
         },
-        format(element) {            
-            var el = document.querySelector(element);
+        format(el) {            
             var maskForm = '';
             
             maskForm = el.dataset.mask;
