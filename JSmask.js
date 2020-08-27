@@ -2,13 +2,11 @@
 const Mask={
     masks:{"#":"\\d",A:"[A-Z]",a:"[a-z]",S:"[a-zA-Z]",X:"[0-9a-zA-Z]"},
     start(){
-        null!==document.querySelector("[data-mask]")&&
-        document.querySelectorAll("[data-mask]").forEach(t=>{Mask.format('[data-mask="'+t.dataset.mask+'"]')})},
-        
+        null !== document.querySelector("[data-mask]") &&
+        document.querySelectorAll("[data-mask]").forEach(t=>{Mask.format('[data-mask="'+t.dataset.mask+'"]')})
+    },    
     format(t){
-        let a=document.querySelector(t),
-        e="";
-            
+        let a=document.querySelector(t), 
         e=a.dataset.mask,
         a.maxLength=e.length,
         a.addEventListener("keyup", function(t){
