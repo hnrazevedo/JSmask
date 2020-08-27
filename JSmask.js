@@ -7,8 +7,8 @@ const Mask={
     },    
     format(t){
         let a=document.querySelector(t), 
-        e=a.dataset.mask,
-        a.maxLength=e.length,
+        e="";
+        e=a.dataset.mask, a.maxLength=e.length,
         a.addEventListener("keyup", function(t){
             8 !== t.keyCode && 46 !== t.keyCode && function(t){
                 let e,s,o,d,r="",n=a.value;
