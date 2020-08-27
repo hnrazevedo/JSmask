@@ -1,61 +1,26 @@
-'use strict';
-
-const Mask = function() {
-    return {
-        masks:{
-            '#':'\\d',
-            'A':'[A-Z]',
-            'a':'[a-z]',
-            'S':'[a-zA-Z]',
-            'X':'[0-9a-zA-Z]'
-        },
-        start(){
-            if(document.querySelector('[data-mask]') != null){
-                document.querySelectorAll('[data-mask]').forEach(function(input,i){
-                    Mask.format('[data-mask="'+input.dataset.mask+'"]');
-                });
-            }
-        },
-        format(element) {            
-            var el = document.querySelector(element);
-            var maskForm = '';
+"use strict";
+const Mask={
+    masks:{"#":"\\d",A:"[A-Z]",a:"[a-z]",S:"[a-zA-Z]",X:"[0-9a-zA-Z]"},
+    start(){
+        null!==document.querySelector("[data-mask]")&&
+        document.querySelectorAll("[data-mask]").forEach(t=>{Mask.format('[data-mask="'+t.dataset.mask+'"]')})},
+        
+    format(t){
+        let a=document.querySelector(t),
+        e="";
             
-            maskForm = el.dataset.mask;
-            el.maxLength = maskForm.length;
-            
-            el.addEventListener('keyup', function (e){
-                if (e.keyCode !== 8 && e.keyCode !== 46) { 
-                    costume(maskForm);
-                }
-            });
-            
-            function costume(mask) {
-                var value = '';
-                var data = el.value;
-                var c, m, i, x;
+        e=a.dataset.mask,
+        a.maxLength=e.length,
+        a.addEventListener("keyup", function(t){
+            8 !== t.keyCode && 46 !== t.keyCode && function(t){
+                let e,s,o,d,r="",n=a.value;
+                for(o=0,d=1;d&&o<t.length;++o)
+                    e=n.charAt(o),
+                    s=t.charAt(o),
+                    void 0 !== Mask.masks[s]?new RegExp(Mask.masks[s]).test(e) ? r += e : d=0 : r+=s; a.value=r
+            }(e)
+        })
+    }
+};
 
-                for (i = 0, x = 1; x && i < mask.length; ++i) {
-                    c = data.charAt(i);
-                    m = mask.charAt(i);
-
-                    if(Mask.masks[m] != undefined){
-                        if((new RegExp(Mask.masks[m])).test(c)){
-                            value += c;
-                            continue;
-                        }
-                    }else{
-                        value += m;
-                        continue;
-                    }
-                    x = 0;
-                }
-                el.value = value;                
-            }
-            
-        }
-    };
-}();
-
-if (/complete|interactive|loaded/.test(document.readyState)) {
-    Mask.start();
-}
+/complete|interactive|loaded/.test(document.readyState) && Mask.start();
