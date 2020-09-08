@@ -1,5 +1,6 @@
 # JSmask
-Bibliote simples para mascaras em JS
+Simple JS library for masks
+#### Bibliote simples para mascaras em JS
 
 # Use
 Import the Script file into your page
