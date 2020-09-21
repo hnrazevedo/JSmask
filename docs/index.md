@@ -1,37 +1,54 @@
-## Welcome to GitHub Pages
+# JSmask
+Simple JS library for masks
+#### Bibliote simples para mascaras em JS
 
-You can use the [editor on GitHub](https://github.com/hnrazevedo/JSmask/edit/master/docs/index.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+# Use
+Import the Script file into your page
+#### Importe o arquivo do Script em sua página
+```html
+<script src="https://cdn.jsdelivr.net/gh/hnrazevedo/JSmask/JSmask.js" type="text/javascript"></script>
+```
+To determine which inputs should be masked, just determine the data-mask in it:
+#### Para determinar quais inputs devem ter mascara, apenas determine o data-mask no mesmo:
+```html
+<input type="text" name="birth"" data-mask="##/##/####" >
+```
+Or to add mask to dynamically inserted input
+#### Ou para adicionar mascara em input dinâmicamente inserido
+```html
+<script>
+  var input = document.querySelector(...);
+  Mask.add(input);
+</script>
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+## Supported masks
+```
+#: Number,
+A: Uppercase character,
+a: Lowercase character,
+S: Character without uppercase or lowercase test',
+X: Untested and numeric character
+```
 
-### Jekyll Themes
+### Examples
+```
+Date with time           : data-mask="##/##/#### ##:##"
+Date                     : data-mask="##/##/####"
+Time                     : data-mask="##:##:##"
+Time with acronyms       : data-mask="##h##m"
+Zip code                 : data-mask="#####-###"
+Telephone with area code : data-mask="(##) ####-####"
+CPF                      : data-mask="###.###.###-#"
+CNPJ                     : data-mask="##.###.###/####-##"
+Money                    : data-mask="###.###.###.###.###.###,##"
+Mixed                    : data-mask="AAA ###-###"
+Car License Plate        : data-mask="AAA ####"
+```
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/hnrazevedo/JSmask/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+### Nota
+#### There is no need to instantiate the Mask, just set the dataset mask correctly
+Não necessita instânciar o Mask, apenas definir corretamente o dataset mask
 
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+### Credits
+- [Romulo Brasil](https://github.com/romulobrasil) - Based on your Pure Mask project
