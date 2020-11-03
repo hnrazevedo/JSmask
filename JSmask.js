@@ -1,24 +1,24 @@
 "use strict";
 const Mask={
     masks:{"#":"\\d",A:"[A-Z]",a:"[a-z]",S:"[a-zA-Z]",X:"[0-9a-zA-Z]"},
-    start(){
-        null !== document.querySelector("[data-mask]") &&
-        document.querySelectorAll("[data-mask]").forEach(t=>{Mask.format('[data-mask="'+t.dataset.mask+'"]')})
-    },    
-    format(t){
-        let a=document.querySelector(t), 
-        e="";
-        e=a.dataset.mask, a.maxLength=e.length,
-        a.addEventListener("keyup", function(t){
-            8 !== t.keyCode && 46 !== t.keyCode && function(t){
-                let e,s,o,d,r="",n=a.value;
-                for(o=0,d=1;d&&o<t.length;++o)
-                    e=n.charAt(o),
-                    s=t.charAt(o),
-                    void 0 !== Mask.masks[s]?new RegExp(Mask.masks[s]).test(e) ? r += e : d=0 : r+=s; a.value=r
-            }(e)
+    init(){
+        null!=document.querySelector("[data-mask]") && document.querySelectorAll("[data-mask]").forEach(function(a,t){
+            Mask.format('[data-mask="'+a.dataset.mask+'"]')
         })
+    },
+    format(a){
+        var t,e=document.querySelector(a);
+        function s(a){
+            var t,s,n,o,r="",c=e.value;
+            for(n=0,o=1;o&&n<a.length;++n)
+                t=c.charAt(n),s=a.charAt(n), null != Mask.masks[s] ? new RegExp(Mask.masks[s]).test(t) ? r += t : o = 0 : r += s;
+            e.value=r
+        }
+        t = e.dataset.mask,
+        e.maxLength=t.length,
+        e.addEventListener("keyup",function(a){8!==a.keyCode&&46!==a.keyCode&&s(t)}),
+        e.addEventListener("focus",function(a){s(t)})
     }
 };
-
-/complete|interactive|loaded/.test(document.readyState) && Mask.start();
+                
+/complete|interactive|loaded/.test(document.readyState) && Mask.init();
